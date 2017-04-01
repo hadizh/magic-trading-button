@@ -85,6 +85,10 @@ void OnDeinit(const int reason)
   {
 //---
    ObjectDelete(0, "CloseButton");
+   ObjectDelete(0, "CloseSellButton");
+   ObjectDelete(0, "CloseBuyButton");
+   ObjectDelete(0, "CloseProfitButton");
+   ObjectDelete(0, "CloseLossButton");
   }
 //+------------------------------------------------------------------+
 //| Expert tick function                                             |
@@ -106,22 +110,32 @@ void OnChartEvent(const int id,
    ObjectSetInteger(0, "CloseButton", OBJPROP_BGCOLOR, White);
    int success = 0;
    //If buttonspr was clicked
-   if (id == CHARTEVENT_OBJECT_CLICK && sparam == "CloseButton")
-  	   success = deleteOrders() ? 2 : 1;
+   if (id == CHARTEVENT_OBJECT_CLICK) {
+       if (sparam == "CloseButton") success = deleteOrders() ? 2 : 1;
+       else if (sparam == "CloseSellButton") success = deleteSellOrders() ? 2 : 1;
+       else if (sparam == "CloseBuyButton") success = deleteBuyOrders() ? 2 : 1;
+       else if (sparam == "CloseProfitButton") success = deleteProfitOrders() ? 2 : 1;
+       else if (sparam == "CloseLossButton") success = deleteLossOrders() ? 2 : 1;
+   }
     if (success == 2)
     {
     	//Change button color to green
-      ObjectSetInteger(0, "CloseButton", OBJPROP_BGCOLOR, Green);
+      ObjectSetInteger(0, sparam, OBJPROP_BGCOLOR, Green);
+      //Sleep then change button color back to normal
+      Sleep(200);
+      ObjectSetInteger(0, sparam, OBJPROP_BGCOLOR, White);
+      ObjectSetInteger(0, sparam, OBJPROP_STATE, false);
     }
     else if (success == 1)
     {
     	//Change button color to red
-      ObjectSetInteger(0, "CloseButton", OBJPROP_BGCOLOR, Red);
+      ObjectSetInteger(0, sparam, OBJPROP_BGCOLOR, Red);
+      //Sleep then change button color back to normal
+      Sleep(200);
+      ObjectSetInteger(0, sparam, OBJPROP_BGCOLOR, White);
+      ObjectSetInteger(0, sparam, OBJPROP_STATE, false);
     }
-    //Sleep then change button color back to normal
-    Sleep(200);
-    ObjectSetInteger(0, "CloseButton", OBJPROP_BGCOLOR, White);
-    ObjectSetInteger(0, "CloseButton", OBJPROP_STATE, false);
+    
   }
 //+------------------------------------------------------------------+
 
