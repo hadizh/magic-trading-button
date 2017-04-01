@@ -4,9 +4,7 @@
 //|                                                                  |
 //+------------------------------------------------------------------+
 #property copyright "Hadi Zhang"
-#property link      ""
-#property version   "1.00"
-#property strict
+
 //--- input parameters
 int      Slippage=3;
 //+------------------------------------------------------------------+
@@ -15,7 +13,8 @@ int      Slippage=3;
 int OnInit()
   {
 //---
-   //Create the button
+   //Create the buttons
+  //Close All Orders Button
   ObjectCreate(0, "CloseButton", OBJ_BUTTON, 0, 0, 0);
   ObjectSetInteger(0, "CloseButton", OBJPROP_XDISTANCE, 25);
   ObjectSetInteger(0, "CloseButton", OBJPROP_YDISTANCE, 25);
@@ -26,6 +25,56 @@ int OnInit()
 	ObjectSetInteger(0, "CloseButton", OBJPROP_HIDDEN, true);
 	ObjectSetInteger(0, "CloseButton", OBJPROP_STATE, false);
 	ObjectSetInteger(0, "CloseButton", OBJPROP_FONTSIZE, 12);
+
+   //Close Sell Orders
+   ObjectCreate(0, "CloseSellButton", OBJ_BUTTON, 0, 0, 0);
+  ObjectSetInteger(0, "CloseSellButton", OBJPROP_XDISTANCE, 25);
+  ObjectSetInteger(0, "CloseSellButton", OBJPROP_YDISTANCE, 80);
+  ObjectSetInteger(0, "CloseSellButton", OBJPROP_XSIZE, 150);
+  ObjectSetInteger(0, "CloseSellButton", OBJPROP_YSIZE, 30);
+  ObjectSetString(0, "CloseSellButton", OBJPROP_TEXT, "Close Sell Orders");
+   ObjectSetInteger(0, "CloseSellButton", OBJPROP_BGCOLOR, White);
+	ObjectSetInteger(0, "CloseSellButton", OBJPROP_HIDDEN, true);
+	ObjectSetInteger(0, "CloseSellButton", OBJPROP_STATE, false);
+	ObjectSetInteger(0, "CloseSellButton", OBJPROP_FONTSIZE, 12);
+	
+   //Close Buy Orders
+   ObjectCreate(0, "CloseBuyButton", OBJ_BUTTON, 0, 0, 0);
+  ObjectSetInteger(0, "CloseBuyButton", OBJPROP_XDISTANCE, 25);
+  ObjectSetInteger(0, "CloseBuyButton", OBJPROP_YDISTANCE, 135);
+  ObjectSetInteger(0, "CloseBuyButton", OBJPROP_XSIZE, 150);
+  ObjectSetInteger(0, "CloseBuyButton", OBJPROP_YSIZE, 30);
+  ObjectSetString(0, "CloseBuyButton", OBJPROP_TEXT, "Close Buy Orders");
+   ObjectSetInteger(0, "CloseBuyButton", OBJPROP_BGCOLOR, White);
+	ObjectSetInteger(0, "CloseBuyButton", OBJPROP_HIDDEN, true);
+	ObjectSetInteger(0, "CloseBuyButton", OBJPROP_STATE, false);
+	ObjectSetInteger(0, "CloseBuyButton", OBJPROP_FONTSIZE, 12);
+	
+   //Close Orders in Profit
+   ObjectCreate(0, "CloseProfitButton", OBJ_BUTTON, 0, 0, 0);
+  ObjectSetInteger(0, "CloseProfitButton", OBJPROP_XDISTANCE, 25);
+  ObjectSetInteger(0, "CloseProfitButton", OBJPROP_YDISTANCE, 190);
+  ObjectSetInteger(0, "CloseProfitButton", OBJPROP_XSIZE, 150);
+  ObjectSetInteger(0, "CloseProfitButton", OBJPROP_YSIZE, 30);
+  ObjectSetString(0, "CloseProfitButton", OBJPROP_TEXT, "Close Profit Orders");
+   ObjectSetInteger(0, "CloseProfitButton", OBJPROP_BGCOLOR, White);
+	ObjectSetInteger(0, "CloseProfitButton", OBJPROP_HIDDEN, true);
+	ObjectSetInteger(0, "CloseProfitButton", OBJPROP_STATE, false);
+	ObjectSetInteger(0, "CloseProfitButton", OBJPROP_FONTSIZE, 12);
+	
+   //Close Orders in Loss
+   ObjectCreate(0, "CloseLossButton", OBJ_BUTTON, 0, 0, 0);
+  ObjectSetInteger(0, "CloseLossButton", OBJPROP_XDISTANCE, 25);
+  ObjectSetInteger(0, "CloseLossButton", OBJPROP_YDISTANCE, 245);
+  ObjectSetInteger(0, "CloseLossButton", OBJPROP_XSIZE, 150);
+  ObjectSetInteger(0, "CloseLossButton", OBJPROP_YSIZE, 30);
+  ObjectSetString(0, "CloseLossButton", OBJPROP_TEXT, "Close Loss Orders");
+   ObjectSetInteger(0, "CloseLossButton", OBJPROP_BGCOLOR, White);
+	ObjectSetInteger(0, "CloseLossButton", OBJPROP_HIDDEN, true);
+	ObjectSetInteger(0, "CloseLossButton", OBJPROP_STATE, false);
+	ObjectSetInteger(0, "CloseLossButton", OBJPROP_FONTSIZE, 12);
+	
+	
 //---
    return(INIT_SUCCEEDED);
   }
